@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+@section VendorLogin{
+    <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" type="text/css" />
+}
+<html>
+<head>
+    <title>
+        Vendor Registration
+    </title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+
+<body class="white" id="LoginForm">
+    <div class="container">
+        <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                    <h2>Vendor Register</h2>
+                    <p>Please fill in your details</p>
+                </div>
+                <form id="Login">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Email Id">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="phone" placeholder="Phone No">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="store" placeholder="Store Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="location" placeholder="Location">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password-again" placeholder="Re-type Password">
+                    </div>
+                    <button onclick = "registerVendor()" class="btn btn-primary">Register</button>
+                    <div class="Existing User">
+                        <a href="Testing_Login">Already have an account ?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function registerVendor() {
+            var username = document.getElementById("username").value;
+            console.log(username);
+            var email = document.getElementById("email").value;
+            var phoneNo = document.getElementById("phone").value;
+            var password = document.getElementById("password").value;
+            var repass = document.getElementById("password-again").value;
+            var store = document.getElementById("store").value;
+            var location = document.getElementById("location").value;
+            $.ajax({
+
+                url: 'http://localhost:59847/Vendors/Create',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    "VendorUsername": username,
+                    "VendorPassword": password,
+                    "SetVendorPassword": repass,
+                    "VendorEmail": email,
+                    "VendorPhone": phoneNo,
+                    "Location": location,
+                    "StoreName": store
+                }),
+                dataType: "json",
+                success: function (result) {
+                    console.log("created successfully")
+                }
+
+            });
+
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+</body>
+
+</html>
