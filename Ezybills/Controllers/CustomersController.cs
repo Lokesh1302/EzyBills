@@ -62,7 +62,8 @@ namespace Ezybills.Controllers
         [HttpPost]
         public ActionResult GetId([System.Web.Http.FromBody]Customer customer)
         {
-            var email = Session["CustomerEmail"].ToString();
+             var email = Session["CustomerEmail"].ToString();
+            
             var cu = db.Customers.FirstOrDefault(x => x.CustomerEmail == email);
             return Json(new { customerId = cu.CustomerID });
         }
@@ -75,6 +76,7 @@ namespace Ezybills.Controllers
 
         public ActionResult Login([System.Web.Http.FromBody] Customer customer)
         {
+            Session["CustomerEmail"] = customer.CustomerEmail;
             if (db.Customers.FirstOrDefault(x => (x.CustomerEmail == customer.CustomerEmail && x.SetCustomerPassword == customer.SetCustomerPassword)) != null)
             {
                 return Json(new { ok = true, newurl = Url.Action("Profile"), email = customer.CustomerEmail });

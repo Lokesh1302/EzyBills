@@ -115,12 +115,7 @@
                 url: "http://localhost:59847/Customers/GetId",
                 type: "POST",
                 contentType: 'application/json',
-                data: JSON.stringify({
-
-
-                    "CustomerEmail": email,
-
-                }),
+                
                 dataType: "json",
                 success: function (response) {
                     console.log(response.customerId);
