@@ -41,138 +41,105 @@
 
 </head>
 <body class="white">
-    @*<div id="login-page" class="row">
-        <div class="col s12 z-depth-6 card-panel">
-            <form class="login-form">
 
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-communication-email prefix"></i>
-                        <input id="email" type="email" class="validate">
-                        <label for="email" class="center-align">Email</label>
-                    </div>
-                </div>
-
-
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="mdi-action-lock-outline prefix"></i>
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <a onclick="loginVendor()" class="btn waves-effect waves-light col s12">Login</a>
-                    </div>
-
-                </div>
-            </form>
-        </div>
-    </div>*@
     <div id="profile">
-        <div class="row">
-            <div class="input-field col s12">
-                <a onclick="addItems()" class="btn waves-effect waves-light col s12">Add Items</a>
+        <div class="row" style="float:left;height:300px;width:400px;">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/static/img/additem.png">
+                        <span class="card-title">Add Item</span>
+                    </div>
+                    <div class="card-action">
+                        <a onclick="addItems()">Add Items</a>
+                    </div>
+                </div>
             </div>
-
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <a onclick="billGeneration()" class="btn waves-effect waves-light col s12">Generate Bill</a>
+        <div class="row" style="float:left;height:300px;width:400px;margin-left:20px;">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/static/img/bill.png">
+                        <span class="card-title">Generate Bill</span>
+                    </div>
+                    <div class="card-action">
+                        <a onclick="billGeneration()">Generate Bill</a>
+                    </div>
+                </div>
             </div>
-
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <a onclick="summary()" class="btn waves-effect waves-light col s12">Summary</a>
+        <div class="row" style="float:left;height:300px;width:400px;margin-left:20px;">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/static/img/summary.png">
+                        <span class="card-title">Summary</span>
+                    </div>
+                    <div class="card-action">
+                        <a onclick="summary()">Summary</a>
+                    </div>
+                </div>
             </div>
-
         </div>
+
     </div>
     <div id="items">
-        <div class="input-field col s6">
-            <input id="item_name" type="text" class="validate">
-            <label for="item_name">Item Name</label>
+
+        <div class="input-field col s12" style="position:absolute;top:0;right:10px;">
+            <a onclick="finish()" class="btn waves-effect waves-light col s12">Dashboard</a>
         </div>
-        <div class="input-field col s6">
-            <input id="item_price" type="number" class="validate">
-            <label for="item_price">Item Price</label>
+
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="item_name" placeholder="Item Name">
         </div>
-        <div class="input-field col s6">
-            <input id="item_quantity" type="number" class="validate">
-            <label for="item_quantity">Item Quantity</label>
+        <div class="form-group">
+            <input type="number" class="form-control" id="item_price" placeholder="Item Price">
         </div>
-        <div class="input-field col s6">
-            <input id="item_type" type="text" class="validate">
-            <label for="item_type">Item Type</label>
+        <div class="form-group">
+            <input type="number" class="form-control" id="item_quantity" placeholder="Item Quantity">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="item_type" placeholder="Item Type">
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <a onclick="addItem()" class="btn waves-effect waves-light col s12">Add Item</a>
             </div>
-
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <a onclick="finish()" class="btn waves-effect waves-light col s12">Finish</a>
-            </div>
 
-        </div>
     </div>
     <div id="bills">
-        <div class="input-field col s6">
-            <input id="customerPhone" type="text" class="validate">
-            <label for="Phone">Customer Phone Number</label>
+        <div class="input-field col s12" style="position:absolute;top:0;right:10px;">
+            <a onclick="finish()" class="btn waves-effect waves-light col s12">Dashboard</a>
         </div>
-        <div class="input-field col s12">
+        <div class="form-group" style="position:absolute;top:60px;left:100px;">
+            <input type="text" class="form-control" id="customerPhone" placeholder="Customer Phone Number">
+        </div>
+        <div class="input-field col s12" style="position:absolute;top:100px;left:100px;">
             <a onclick="checkIfCustomeExists()" class="btn waves-effect waves-light col s12">Check</a>
         </div>
         <div class="input-field col s12">
             <a onclick="computeBill()" class="btn waves-effect waves-light col s12">Compute Bill</a>
         </div>
+        <div class="form-group">
+            <input type="text" class="autocomplete" id="item_name_bill" placeholder="Item Name">
+        </div>
+        <div class="form-group">
+            <input type="number"  id="item_price_bill" placeholder="Item Price">
+        </div>
+        <div class="form-group">
+            <input type="number" onchange="changePrice(this)" id="item_quantity_bill" placeholder="Item Quantity">
+        </div>
+        <div class="input-field col s12">
+            <a onclick="addToTable()" class="btn waves-effect waves-light col s12">Add</a>
+        </div>
 
-        <table id="itemstable" style="width:300px">
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Item Price</th>
-                    <th>Item Quantity</th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="input-field col s6">
-                            <input type="text" id="item_name_bill" class="autocomplete">
-                            <label for="item_name_bill">Item Name</label>
-                        </div>
-                    </td>
 
-                    <td>
-                        <div class="input-field col s6">
-                            <input id="item_price_bill" type="number" class="validate">
-                            <label for="item_price_bill">Item Price</label>
-                        </div>
-                    </td>
 
-                    <td>
-                        <div class="input-field col s6">
-                            <input id="item_quantity_bill" onchange="changePrice(this)" type="number" class="validate">
-                            <label for="item_quantity_bill">Item Quantity</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <a onclick="addToTable()" class="btn waves-effect waves-light col s12">Add</a>
-                        </div>
-                    </td>
-
-                </tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
     </div>
-    <div id="finish">
+    <div id="finish" style="position:absolute;top:0;right:10px;">
         <div class="input-field col s12">
             <a onclick="finish()" class="btn waves-effect waves-light col s12">Dashboard</a>
         </div>
@@ -201,41 +168,10 @@
             getProfile();
         });
 
-        //function loginVendor() {
-        //    $('#profile').hide();
-        //    var email = document.getElementById("email").value;
-
-        //    var repass = document.getElementById("password").value;
-        //    $.ajax({
-
-        //        url: 'http://localhost:59847/Vendors/Login',
-        //        type: 'POST',
-        //        contentType: 'application/json',
-        //        data: JSON.stringify({
-
-        //            "SetVendorPassword": repass,
-        //            "VendorEmail": email,
-
-        //        }),
-        //        dataType: "json",
-        //        success: function (returndata) {
-        //            if (returndata.ok) {
-        //                console.log("done");
-        //                console.log(returndata.email);
-        //                emailMain = returndata.email;
-        //                getProfile(returndata.email);
-        //            }
-        //            else
-        //                window.alert(returndata.message);
-        //        }
-
-        //    });
-
-        //}
         function getProfile() {
             $("#login-page").hide();
             $("#profile").show();
-           
+
             console.log("hey:" + emailMain);
             $.ajax({
                 url: "http://localhost:59847/Vendors/GetId",
@@ -480,9 +416,9 @@
                             console.log((data.id[i]));
                             console.log("bill id :" + (data.id)[i].BillID);
                             if ((data.id)[i].BillID > 0) {
-                                inner += "<div class=\"row\">"
+                                inner += "<div class=\"row\" style=\"width:600px;float:left;padding:5px;\">"
                                     + "<div class=\"col s12 m6\" >"
-                                    + " <div class=\"card blue-grey darken-1\">"
+                                    + " <div class=\"card light-blue lighten-3\">"
                                     + "<div class=\"card-content white-text\">"
                                     + "<span class=\"card-title\">Test Bill</span>"
                                     + "<p><table><tr><th>Item Name</th><th>Quantity Purchased</th><th>Item Price</th></tr>";

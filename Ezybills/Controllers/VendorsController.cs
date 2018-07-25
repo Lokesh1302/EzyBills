@@ -166,7 +166,6 @@ namespace Ezybills.Controllers
 
 
             }
-
             return Json(new { ok = false, message = "login failed" });
 
         }
@@ -174,7 +173,8 @@ namespace Ezybills.Controllers
         [HttpPost]
         public ActionResult GetId([System.Web.Http.FromBody]Vendor vendor)
         {
-            var ve = db.Vendors.FirstOrDefault(x => x.VendorEmail == Session["VendorEmail"].ToString());
+            var email = Session["VendorEmail"].ToString();
+            var ve = db.Vendors.FirstOrDefault(x => x.VendorEmail == email);
             return Json(new { vendorId = ve.VendorID });
         }
 

@@ -1,109 +1,95 @@
-﻿
-@{
-    ViewBag.Title = "Customer_Login";
-}
-@section VendorLogin{
-    <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" type="text/css" />
-}
-<html>
+﻿<html>
 <head>
     <title>
         Customer Login
     </title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
-<body class="white" id="LoginForm">
-    <div id="dashboard">
-        <div class="row">
-            <div class="input-field col s12">
-                <a onclick="dashboard()" class="btn waves-effect waves-light col s12">Dashboard</a>
-            </div>
-
+<body class="white">
+    <div id="finish" style="position:absolute;top:0;right:10px;">
+        <div class="input-field col s12">
+            <a onclick="finish()" class="btn waves-effect waves-light col s12">Dashboard</a>
         </div>
     </div>
-        <div id="login-page" class="container" >
-            <div class="login-form">
-                <div class="main-div">
-                    <div class="panel">
-                        <h2>Customer Login</h2>
-                        <p>Please enter your email and password</p>
+    <div id="models">
+    </div>
+    <div id="profile">
+        <div class="row" style="float:left;height:300px;width:400px;">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/static/img/summary.png">
+                        <span class="card-title">Summary</span>
                     </div>
-                    <form id="Login">
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="CustomerEmail" placeholder="Email Address">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="CustomerPassword" placeholder="Password">
-                        </div>
-                        <div class="forgot">
-                            <a href="/">Forgot password?</a>
-                        </div>
-                        <button onclick="loginCustomer()" class="btn btn-primary">Login</button>
-                        <div class="new User">
-                            <a href="Create">New ? Register here for free !</a>
-                        </div>
-                    </form>
+                    <div class="card-action">
+                        <a onclick="summary()">Summary</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="models">
-
-
-        </div>
-        <div id="profile">
-            <div class="input-field col s12">
-                <a onclick="summary()" class="btn waves-effect waves-light col s12">Summary</a>
-            </div>
-            <div class="input-field col s12">
-                <a onclick="availability()" class="btn waves-effect waves-light col s12">Check Availability</a>
-            </div>
-        </div>
-        <div id="available">
-            <div class="input-field col s6">
-                <input type="text" id="store_name" class="autocomplete">
-                <label for="store_name">Store Name</label>
-            </div>
-            <div class="input-field col s6">
-                <input type="text" id="loc" class="autocomplete">
-                <label for="loc">Location</label>
-            </div>
-            <div class="input-field col s6">
-                <input type="text" id="product" class="autocomplete">
-                <label for="product">Product</label>
-            </div>
-            <div class="input-field col s12">
-                <a onclick="checkIfAvailable()" class="btn waves-effect waves-light col s12">check</a>
+        <div class="row" style="float:left;height:300px;width:400px;">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/static/img/available.jpg">
+                        <span class="card-title">Check Availability</span>
+                    </div>
+                    <div class="card-action">
+                        <a onclick="availability()">Check Availability</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="productDetails">
-            <div class="input-field col s6">
-                <input type="text" id="productName">
-                <label for="product">Product</label>
-            </div>
-            <div class="input-field col s6">
-                <input type="text" id="productQuantity">
-                <label for="product">Quantity Available</label>
-            </div>
-            <div class="input-field col s6">
-                <input type="text" id="productPrice">
-                <label for="product">Price</label>
-            </div>
+    </div>
+    <div id="available">
+        <div class="form-group">
+            <input type="text" class="autocomplete" id="store_name" placeholder="Store Name">
         </div>
-        <script>
+        <div class="form-group">
+            <input type="text" class="autocomplete" id="loc" placeholder="Location">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="product" placeholder="product" />
+        </div>
+        <div class="input-field col s12">
+            <a onclick="checkIfAvailable()" class="btn waves-effect waves-light col s12">check</a>
+        </div>
+    </div>
+    <div id="productDetails">
+        <div class="form-group">
+            <input type="text" class="form-control" id="productName" placeholder="">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="productQuantity" placeholder="Quantity Available">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="productPrice" placeholder="Price">
+        </div>
+    </div>
+    <script>
         var customerId = 0;
         var loc = "";
         var storename = "";
         $(document).ready(function () {
-
+            console.log("in customer profile");
             $("#models").hide();
-            $("#profile").hide();
+            $("#profile").show();
             $("#dashboard").hide();
             $("#available").hide();
+            $("#finish").hide();
             $("#productDetails").hide();
+            getProfile();
 
         });
         function dashboard() {
@@ -113,42 +99,18 @@
             $("#productDetails").hide();
 
         }
-        function loginCustomer() {
-
-            var email = document.getElementById("email").value;
-
-            var repass = document.getElementById("password").value;
-            $.ajax({
-
-                url: 'http://localhost:59847/Customers/Login',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-
-                    "SetCustomerPassword": repass,
-                    "CustomerEmail": email,
-
-                }),
-                dataType: "json",
-                success: function (result) {
-                    $("#login-page").hide();
-                    $("#models").show();
-                    $("#dashboard").show();
-                    if (result.ok) {
-                        console.log("done");
-                        console.log(result.email);
-                        emailMain = result.email;
-                        getProfile(result.email);
-                    }
-                    else
-                        window.alert(result.message);
-
-                }
-
-            });
-
+        function finish() {
+            $("#profile").show();
+            $("#models").hide();
+            $("#finish").hide();
+            $("#available").hide();
+            $("#productDetails").hide();
+            document.getElementById("productName").value = "";
+            document.getElementById("productQuantity").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("models").innerHTML = "";
         }
-        function getProfile(email) {
+        function getProfile() {
             $.ajax({
                 url: "http://localhost:59847/Customers/GetId",
                 type: "POST",
@@ -175,6 +137,7 @@
             document.getElementById("models").innerHTML = "";
             $("#models").show();
             $("#profile").hide();
+            $("#finish").show();
             var inner = "";
             $.ajax({
 
@@ -196,9 +159,9 @@
                                 console.log((data.id)[i]);
                                 console.log("bill id :" + (data.id)[i].BillID);
                                 if ((data.id)[i].BillID > 0) {
-                                    inner += "<div class=\"row\">"
+                                    inner += "<div class=\"row\" style=\"width:600px;float:left;padding:5px;\">"
                                         + "<div class=\"col s12 m6\" >"
-                                        + " <div class=\"card blue-grey darken-1\">"
+                                        + " <div class=\"card light-blue lighten-3\">"
                                         + "<div class=\"card-content white-text\">"
                                         + "<span class=\"card-title\">Test Bill</span>"
                                         + "<p><table><tr><th>Item Name</th><th>Quantity Purchased</th><th>Item Price</th></tr>";
@@ -240,6 +203,7 @@
         function availability() {
             $("#available").show();
             $("#profile").hide();
+            $("#finish").show();
             document.getElementById("product").value = "";
             document.getElementById("store_name").value = "";
             document.getElementById("loc").value = "";
@@ -289,7 +253,7 @@
             $("#productDetails").show();
             var item = document.getElementById("product").value;
             $.ajax({
-                url: 'http://localhost:59847/Customers/CheckItem?item='+item,
+                url: 'http://localhost:59847/Customers/CheckItem?item=' + item,
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -297,6 +261,11 @@
                     "Location": loc
                 }),
                 success: function (data) {
+                    if (data.products == null) {
+                        document.getElementById("productName").value = "NA";
+                        document.getElementById("productQuantity").value = "NA";
+                        document.getElementById("productPrice").value = "NA";
+                    }
                     console.log(data.products);
                     document.getElementById("productName").value = data.products.ProductName;
                     document.getElementById("productQuantity").value = data.products.ProductQuantity;
@@ -304,8 +273,8 @@
                 }
             });
         }
-        </script>
+    </script>
 
-    </body>
+</body>
 
 </html>

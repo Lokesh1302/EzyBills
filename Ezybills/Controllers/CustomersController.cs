@@ -62,16 +62,19 @@ namespace Ezybills.Controllers
         [HttpPost]
         public ActionResult GetId([System.Web.Http.FromBody]Customer customer)
         {
-            var cu = db.Customers.FirstOrDefault(x => x.CustomerEmail == customer.CustomerEmail);
+            var email = Session["CustomerEmail"].ToString();
+            var cu = db.Customers.FirstOrDefault(x => x.CustomerEmail == email);
             return Json(new { customerId = cu.CustomerID });
         }
-
+        public ActionResult Customer_Login()
+        {
+            return View("Customer_Login");
+        }
         // POST: Customers/Login
         [HttpPost]
 
         public ActionResult Login([System.Web.Http.FromBody] Customer customer)
         {
-
             if (db.Customers.FirstOrDefault(x => (x.CustomerEmail == customer.CustomerEmail && x.SetCustomerPassword == customer.SetCustomerPassword)) != null)
             {
                 return Json(new { ok = true, newurl = Url.Action("Profile"), email = customer.CustomerEmail });
@@ -138,7 +141,24 @@ namespace Ezybills.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpPost]
 
+        public ActionResult CheckItem([System.Web.Http.FromBody] Vendor vendor)
+        {
+            string item = Request.QueryString["item"];
+            int vendorid = db.Vendors.FirstOrDefault(x => x.StoreName == vendor.StoreName && x.Location == vendor.Location).VendorID;
+            var product = db.Products.FirstOrDefault(x => x.ProductName == item && x.ItemVendorId == vendorid);
+
+            return Json(new { products = product });
+        }
+        [HttpPost]
+        public ActionResult checkPhone([System.Web.Http.FromBody]Customer customer)
+        {
+            var cu = db.Customers.FirstOrDefault(x => x.CustomerPhone == customer.CustomerPhone);
+            if (cu != null)
+                return Json(new { ok = true, customerId = cu.CustomerID });
+            else return Json(new { ok = false });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -164,7 +184,7 @@ namespace Ezybills.Controllers
                 IEnumerable<Item> items = from item in db.Items
                                           where item.ItemBillID == Bill
                                           select item;
-                foreach(Item item in items)
+                foreach (Item item in items)
                 {
                     itemList.Add(item);
                 }
